@@ -1,4 +1,5 @@
-﻿using YandexMusicResolver.Config;
+﻿using System.Net.Http;
+using YandexMusicResolver.Config;
 
 namespace YandexMusicResolver.Requests {
     internal class YandexCustomRequest : YandexRequest {
@@ -6,7 +7,7 @@ namespace YandexMusicResolver.Requests {
         public YandexCustomRequest(IYandexProxyTokenHolder? config = null) : base(config) { }
 
         public YandexCustomRequest Create(string url) {
-            FormRequest(url);
+            FormRequest(url, HttpMethod.Get);
             return this;
         }
     }

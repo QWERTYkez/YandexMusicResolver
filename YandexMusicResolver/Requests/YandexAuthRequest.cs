@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using System.Web;
@@ -23,9 +24,8 @@ namespace YandexMusicResolver.Requests {
                 {"password", password},
             };
 
-            FormRequest("https://oauth.yandex.ru/token", WebRequestMethods.Http.Post,
-                body: string.Join("&", body.Select(p => $"{p.Key}={HttpUtility.UrlEncode(p.Value)}")),
-                afterCreate: request => request.ContentType = "application/x-www-form-urlencoded");
+            FormRequest("https://oauth.yandex.ru/token", HttpMethod.Post,
+                body: string.Join("&", body.Select(p => $"{p.Key}={HttpUtility.UrlEncode(p.Value)}")));
 
             return this;
         }
