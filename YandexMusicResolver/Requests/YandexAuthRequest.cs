@@ -32,9 +32,7 @@ namespace YandexMusicResolver.Requests {
 
         public async Task<MetaAuthResponse> ParseResponseAsync() {
             var httpWebResponse = await GetResponseAsync();
-            if (httpWebResponse.StatusCode == HttpStatusCode.BadRequest) {
-                throw new InvalidCredentialException("Failed to authorize with provided login and password");
-            }
+            if (httpWebResponse.StatusCode != HttpStatusCode.OK) return null;
             return JsonConvert.DeserializeObject<MetaAuthResponse>(await GetResponseBodyAsync(httpWebResponse));
         }
     }

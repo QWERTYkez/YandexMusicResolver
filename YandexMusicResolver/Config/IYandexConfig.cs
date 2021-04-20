@@ -47,13 +47,15 @@ namespace YandexMusicResolver.Config {
                 throw new AuthenticationException("Unable to obtain token. Credentials are null.");
             }
 
-            try {
-                YandexToken = await YandexMusicAuth.LoginAsync(YandexLogin, YandexPassword, this);
+            if (YandexMusicAuth.Login(YandexLogin, YandexPassword, out string? token))
+            {
+                YandexToken = token;
                 Save();
             }
-            catch (Exception e) {
+            else
+            {
                 if (allowRunWithoutAuth) return;
-                throw new AuthenticationException("Unable to obtain token. Credentials are wrong.", e);
+                throw new AuthenticationException("Unable to obtain token. Credentials are wrong.");
             }
         }
     }
