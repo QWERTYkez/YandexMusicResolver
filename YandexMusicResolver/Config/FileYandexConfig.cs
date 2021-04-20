@@ -7,6 +7,7 @@ namespace YandexMusicResolver.Config {
     /// <summary>
     /// Represents <see cref="IYandexConfig"/> implementation that stores data in a file
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class FileYandexConfig : IYandexConfig {
         private string _filePath;
         private bool isLoaded;
@@ -51,12 +52,15 @@ namespace YandexMusicResolver.Config {
         }
 
         /// <inheritdoc />
+        [JsonProperty]
         public string? YandexLogin { get; set; }
 
         /// <inheritdoc />
+        [JsonProperty]
         public string? YandexPassword { get; set; }
 
         /// <inheritdoc />
+        [JsonProperty]
         public string? YandexToken { get; set; }
 
         /// <summary>
