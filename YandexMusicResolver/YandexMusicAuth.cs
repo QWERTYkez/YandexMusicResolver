@@ -48,20 +48,17 @@ namespace YandexMusicResolver {
         /// <summary>
         /// Try to validate token or get new one using login and password
         /// </summary>
-        /// <param name="existentToken">Token to validate, return new token if successful</param>
-        /// <param name="fallbackLogin">Login from Yandex account</param>
-        /// <param name="fallbackPassword">Password from Yandex account</param>
+        /// <param name="config">Config to validate</param>
         /// <param name="proxyHolder">Container for proxy, which should be used for request</param>
         /// <returns>True if succesful</returns>
-        public static bool ValidateOrLogin(string fallbackLogin, 
-                                             string fallbackPassword, 
-                                             ref string? existentToken,
+        public static bool ValidateOrLogin(FileYandexConfig config,
                                              IYandexProxyHolder? proxyHolder = null) 
         {
-            if (string.IsNullOrWhiteSpace(existentToken) || !ValidateTokenAsync(existentToken, proxyHolder).GetAwaiter().GetResult()) {
-                if (Login(fallbackLogin, fallbackPassword, out string? token, proxyHolder))
+            var token = config.YandexToken;
+            if (string.IsNullOrWhiteSpace(token) || !ValidateTokenAsync(token, proxyHolder).GetAwaiter().GetResult()) {
+                if (Login(config.YandexLogin, config.YandexPassword, out token, proxyHolder))
                 {
-                    existentToken = token;
+                    config.YandexToken = token;
                     return true;
                 } else return false;
             } else return true;

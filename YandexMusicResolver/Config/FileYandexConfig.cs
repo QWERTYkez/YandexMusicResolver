@@ -53,20 +53,20 @@ namespace YandexMusicResolver.Config {
 
         /// <inheritdoc />
         [JsonProperty]
-        public string? YandexLogin { get; set; }
+        public string YandexLogin { get; set; }
 
         /// <inheritdoc />
         [JsonProperty]
-        public string? YandexPassword { get; set; }
+        public string YandexPassword { get; set; }
 
         /// <inheritdoc />
         [JsonProperty]
-        public string? YandexToken { get; set; }
+        public string YandexToken { get; set; }
 
         /// <summary>
         /// Uri to create proxy
         /// </summary>
-        public string? YandexProxyAddress { get; set; }
+        public string YandexProxyAddress { get; set; }
 
         /// <inheritdoc />
         [JsonIgnore]

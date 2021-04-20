@@ -21,13 +21,13 @@ namespace YandexMusicResolver.Config {
         /// Login for Yandex account
         /// </summary>
         /// <remarks>If specified, will be used with a password to get a token if there are problems with the current one</remarks>
-        string? YandexLogin { get; set; }
+        string YandexLogin { get; set; }
 
         /// <summary>
         /// Password for Yandex account
         /// </summary>
         /// <remarks>If specified, will be used with a password to get a token if there are problems with the current one</remarks>
-        string? YandexPassword { get; set; }
+        string YandexPassword { get; set; }
 
         /// <summary>
         /// Try perform authorization
